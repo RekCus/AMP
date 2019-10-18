@@ -13,26 +13,27 @@ let B = new Point(new Vector2d(800,300),20,true,"blue");
 let C = new Point(new Vector2d(400,500),20,true,"red")
 
 let l = new LinearFunction(1,1);
-
+let m = new LinearFunction(1,1);
 
 function animate(){
   requestAnimationFrame(animate);
   context.clearRect(0,0,width,height);
 
 
- 
+  A.draw(context);
+  B.draw(context);
 
   l.defineLineByTwoPoints(A,B);
   l.draw(context);
-  l.defineLineByTwoPoints(A,C);
-  l.draw(context);
-  l.defineLineByTwoPoints(C,B);
-  l.draw(context);
   
-   A.draw(context);
-  B.draw(context);
+  
+  
+  m.draw(context);
+
   C.draw(context);
-  
+
+  m.slope = -1/l.slope;
+  m.intercept = C.position.dy - m.slope*C.position.dx;
 }
 
 animate();
